@@ -1,0 +1,132 @@
+:root {
+  /* ── Light (default) ── */
+  --bg: #eef0f4;
+  --surface: #ffffff;
+  --surface-2: #f7f8fa;
+  --surface-3: #eef0f4;
+
+  --text-1: #1a1c2b;
+  --text-2: #4b5163;
+  --text-3: #9096a5;
+
+  --border: #e9ebf0;
+  --border-strong: #d9dde5;
+
+  --accent: #4f6ef7;
+  --accent-hover: #3f5ce0;
+  --accent-soft: #eef1fe;
+  --accent-text: #ffffff;
+
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+
+  --reason-bg: #fffdf4;
+  --reason-border: #f0e4c4;
+  --reason-text: #8a6d3b;
+
+  --banner-bg: #fff8e8;
+  --banner-border: #f2e0b6;
+  --banner-text: #92610f;
+  --banner-btn: #e79a1e;
+  --banner-btn-hover: #cc8715;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 16px 48px rgba(16, 24, 40, 0.16);
+
+  /* Typography */
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, monospace;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+}
+
+/* ── Dark ── */
+[data-theme="dark"] {
+  --bg: #0e0f12;
+  --surface: #191a1f;
+  --surface-2: #202228;
+  --surface-3: #2a2d34;
+
+  --text-1: #eceef2;
+  --text-2: #b3b8c4;
+  --text-3: #767c8a;
+
+  --border: #2a2d34;
+  --border-strong: #363a43;
+
+  --accent: #6b86ff;
+  --accent-hover: #8598ff;
+  --accent-soft: #232842;
+  --accent-text: #ffffff;
+
+  --danger: #f0666a;
+  --danger-soft: #2e1d1f;
+
+  --reason-bg: #221f16;
+  --reason-border: #3a3420;
+  --reason-text: #c9b483;
+
+  --banner-bg: #241f14;
+  --banner-border: #3d3420;
+  --banner-text: #e0b566;
+  --banner-btn: #c98a1e;
+  --banner-btn-hover: #b57a18;
+
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}
+
+/* ── Pure black (OLED / MiniLED) ── */
+[data-theme="black"] {
+  --bg: #000000;
+  --surface: #000000;
+  --surface-2: #0a0a0c;
+  --surface-3: #16161a;
+
+  --text-1: #f2f3f6;
+  --text-2: #b6bac4;
+  --text-3: #767c8a;
+
+  --border: #1e1f24;
+  --border-strong: #2c2e35;
+
+  --accent: #6b86ff;
+  --accent-hover: #8598ff;
+  --accent-soft: #14172a;
+  --accent-text: #ffffff;
+
+  --danger: #f0666a;
+  --danger-soft: #251618;
+
+  --reason-bg: #14120c;
+  --reason-border: #2a2517;
+  --reason-text: #c9b483;
+
+  --banner-bg: #17130c;
+  --banner-border: #2e2718;
+  --banner-text: #e0b566;
+  --banner-btn: #c98a1e;
+  --banner-btn-hover: #b57a18;
+
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.8);
+
+  color-scheme: dark;
+}

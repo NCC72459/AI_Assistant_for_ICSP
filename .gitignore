@@ -1,0 +1,36 @@
+# ── Secrets (never commit real API keys) ──
+backend/aiapi.env
+*.env
+!*.env.example
+
+# ── Python ──
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ── Node ──
+node_modules/
+
+# ── Runtime data: user conversations + knowledge base ──
+frontend/data/
+*.db
+*.db-wal
+*.db-shm
+
+# ── Local embedding model (large binaries, not distributed via git) ──
+localmodels/
+
+# ── Packaging / build output ──
+build/
+release/
+dist-electron/
+package/
+*.exe
+
+# ── Editor / OS ──
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
