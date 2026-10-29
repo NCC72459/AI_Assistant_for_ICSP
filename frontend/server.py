@@ -821,6 +821,7 @@ if __name__ == "__main__":
     print(f"Database: {db.DB_FILE}")
     if RAG_AVAILABLE:
         print(f"Vectors:  {rag_service.persist_dir}")
-    print(f"Open:     http://localhost:8000")
+    _PORT = int(os.getenv("APP_PORT", "8000"))
+    print(f"Open:     http://localhost:{_PORT}")
     print("=" * 50)
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=_PORT)

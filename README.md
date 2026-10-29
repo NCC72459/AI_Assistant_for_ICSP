@@ -126,3 +126,13 @@ Then open <http://localhost:8000>.
 ## Version
 
 `v2026.10.01` — see the bottom of the sidebar in the running application.
+
+## Port
+
+The server listens on port **8000** by default. If that port is reserved by
+Windows (for example Hyper-V/WSL excluded ranges), set `APP_PORT` before starting:
+
+```bat
+set APP_PORT=8765
+python frontend/server.py
+```
