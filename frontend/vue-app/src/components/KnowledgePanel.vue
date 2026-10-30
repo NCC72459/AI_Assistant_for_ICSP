@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { FileText, Image as ImageIcon, Trash2, X, Star } from 'lucide-vue-next'
 
 const props = defineProps(['chat'])
@@ -12,7 +12,8 @@ const loading = ref(true)
 async function load() {
   loading.value = true
   try {
-    const resp = await fetch('/admin/resources')
+    const session = props.chat?.currentId?.value || 'global'
+    const resp = await fetch('/admin/resources?session=' + encodeURIComponent(session))
     const data = await resp.json()
     documents.value = data.documents || []
     images.value = data.images || []
@@ -37,10 +38,14 @@ async function togglePriority(doc) {
   }
 }
 
-async function removeDocument(fileId) {
+async function removeDocument(doc) {
   if (!confirm('Delete this document?')) return
   try {
-    await fetch(`/files/global/${fileId}`, { method: 'DELETE' })
+    const target = doc.scope === 'global'
+      ? 'global'
+      : (doc.session_id || props.chat?.currentId?.value || 'global')
+    const resp = await fetch(`/files/${encodeURIComponent(target)}/${doc.file_id}`, { method: 'DELETE' })
+    if (!resp.ok) throw new Error('delete failed')
     await load()
     props.chat?.refreshFileStatus?.(props.chat.currentId?.value)
   } catch (e) {
@@ -65,6 +70,10 @@ function fmtSize(bytes) {
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
   return (bytes / 1024 / 1024).toFixed(1) + ' MB'
 }
+
+watch(() => props.chat?.currentId?.value, load)
+watch(() => props.chat?.uploadedFiles?.value?.length, load)
+watch(() => props.chat?.uploadedImages?.value?.length, load)
 
 onMounted(load)
 </script>
@@ -100,7 +109,7 @@ onMounted(load)
             <span class="resource-name">{{ d.filename }}</span>
             <span class="resource-meta">{{ d.chunk_count }} chunks · {{ fmtSize(d.file_size) }} · {{ d.scope === 'global' ? 'Global' : 'Session' }}</span>
           </div>
-          <button class="icon-danger" @click="removeDocument(d.file_id)" title="Delete">
+          <button class="icon-danger" @click="removeDocument(d)" title="Delete">
             <Trash2 :size="16" :stroke-width="1.8" />
           </button>
         </div>

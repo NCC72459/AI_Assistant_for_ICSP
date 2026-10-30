@@ -477,21 +477,24 @@ async def delete_image_endpoint(file_id: str):
 
 
 @app.get("/admin/resources")
-async def admin_resources():
-    """List all global documents and all images for the management page."""
+async def admin_resources(session: str = "global"):
+    """List the documents visible to a conversation (session + global) and all images."""
     documents = []
+    target = session or "global"
     if RAG_AVAILABLE and rag_service is not None:
         try:
-            docs = rag_service.list_documents("global")
-            refs = {r["file_id"]: r for r in db.get_file_references("global")}
+            docs = rag_service.list_documents(target)
+            refs = {r["file_id"]: r for r in db.get_file_references(target)}
             for d in docs:
                 ref = refs.get(d["file_id"], {})
+                scope = d.get("scope", ref.get("scope", "global"))
                 documents.append({
                     "file_id": d["file_id"],
                     "filename": d["filename"],
                     "chunk_count": d["chunk_count"],
                     "file_size": ref.get("file_size", 0),
-                    "scope": d.get("scope", ref.get("scope", "global")),
+                    "scope": scope,
+                    "session_id": "global" if scope == "global" else target,
                     "priority": ref.get("priority", 0),
                     "hash": ref.get("hash", ""),
                 })
