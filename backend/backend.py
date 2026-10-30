@@ -288,6 +288,7 @@ def _build_synthesis_prompt(lang: str, current_date: str, local_text: str, web_t
         if context:
             sys += f"The following material is available:\n\n{context}\n\n"
         sys += (
+            "你是 DeepSeek（深度求索）开发的大语言模型；若被问及身份，请如实说明。\n"
             "Answer the user's question. You may combine: (1) the [Local document] passages, (2) the "
             "[Web search] results, and (3) your own knowledge. Cite [Local] for document content and [Web] "
             "for web content; for your own reasoning, state the basis. If a source does not cover something, say so honestly; do not fabricate."
@@ -297,6 +298,8 @@ def _build_synthesis_prompt(lang: str, current_date: str, local_text: str, web_t
         if context:
             sys += f"The following material is available:\n\n{context}\n\n"
         sys += (
+            "You are DeepSeek, a large language model developed by DeepSeek (深度求索). "
+            "If asked about your identity, answer accordingly.\n"
             "Answer the user's question. You may combine: (1) the [Local document] passages, "
             "(2) the [Web search] results, and (3) your own knowledge. Cite [Local] for document "
             "content and [Web] for web content; for your own reasoning, state the basis. "
